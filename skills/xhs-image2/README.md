@@ -1,6 +1,15 @@
 # xhs-image2-skills
 
-通过 [团多宝 API](https://www.tuanduobao.com) 调用 **GPT Image 2** 生成图片，支持文生图、图生图，默认 3:4 竖版适配小红书。
+通过 GPT Image 2 API 生成图片，支持文生图、图生图，默认 3:4 竖版适配小红书。
+
+## 适用 Agent
+
+本 Skill 可用于支持 Skill 标准的 Agent 运行时，包括：
+
+- **Claude Code** — 注册 skill 路径后通过自然语言调用
+- **Codex** — 使用 `$skill-installer` 安装
+- **OpenClaw** — 支持 OpenClaw Skill 格式
+- 其他兼容 SKILL.md 的 Agent 框架
 
 ## 快速开始
 
@@ -11,16 +20,15 @@ echo "API_KEY=vg-你的key" > .env
 # 2. 生成图片（每个 prompt 生成一张）
 python scripts/generate.py --prompts "一只橘猫坐在窗台上，水彩画风"
 
-# 3. 多张
+# 3. 多张生成
 python scripts/generate.py --prompts "咖啡店早晨氛围" "极简护肤品海报" "日系插画少女"
 ```
 
 ## 前置准备
 
-1. 注册 [团多宝](https://www.tuanduobao.com)
-2. 导航栏 **Key** → **创建 API Key** → 复制保存（格式 `vg-xxx...`）
-3. 首次使用需先充值（支持微信/支付宝）
-4. 在 `.env` 中填入 `API_KEY=vg-你复制的key`
+1. 去 [tuanduobao.com](https://www.tuanduobao.com) 注册并创建 API Key（格式 `vg-xxx...`）
+2. 价格约 **5 分/张**
+3. 在 `.env` 中填入 `API_KEY=vg-你复制的key`
 
 ## 参数
 
@@ -36,12 +44,13 @@ python scripts/generate.py --prompts "咖啡店早晨氛围" "极简护肤品海
 
 图片保存到 `images/generated/{timestamp}_{seq}.png`，完成后展示所有图片路径。
 
-## AI Agent Skill
+## 生成示例
 
-本仓库包含 `SKILL.md`，可用于 Claude Code、Codex 等支持 Skill 的 Agent 运行时。注册 skill 路径后即可通过自然语言直接调用，例如：
-
-> "帮我画一张橘猫水彩画"
-> "生成3张护肤品海报图"
+| 提示词 | 结果 |
+|--------|------|
+| 一只橘猫坐在窗台上看夕阳，水彩画风，温暖色调 | ![cat](images/generated/20260624_133541_1.png) |
+| 极简风格护肤品海报，米白背景 | ![skincare](images/generated/20260624_133638_1.png) |
+| 日系插画少女，樱花树下 | ![anime](images/generated/20260624_133820_2.png) |
 
 ## License
 
